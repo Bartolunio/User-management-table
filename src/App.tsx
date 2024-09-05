@@ -1,16 +1,21 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
-import UserTable from "./components/UserTable";
+import { useDispatch } from 'react-redux';
+import UserTable from './components/UserTable';
+import Filter from './components/Filter';
+import { FC, useEffect } from 'react';
+import { fetchUsers } from './redux/userSlice';
 
-const App: React.FC = () => {
+const App: FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <h1>User Management</h1>
-        <UserTable />
-      </div>
-    </Provider>
+    <div>
+      <Filter />
+      <UserTable />
+    </div>
   );
 };
 
