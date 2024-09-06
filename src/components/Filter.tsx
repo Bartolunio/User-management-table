@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../redux/userSlice';
-import { RootState } from '../redux/store';
-import { ChangeEvent, FC } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { setFilter } from "../redux/userSlice";
+import { RootState } from "../redux/store";
+import { ChangeEvent, FC } from "react";
 
 const Filter: FC = () => {
   const dispatch = useDispatch();
@@ -12,32 +12,33 @@ const Filter: FC = () => {
   };
 
   return (
-    <div>
+    <div className="bg-purple-700">
       <input
-        type='text'
-        name='name'
-        placeholder='Filter by name'
+        className="bg-green-500"
+        type="text"
+        name="name"
+        placeholder="Filter by name"
         value={filters.name}
         onChange={handleChange}
       />
       <input
-        type='text'
-        name='username'
-        placeholder='Filter by username'
+        type="text"
+        name="username"
+        placeholder="Filter by username"
         value={filters.username}
         onChange={handleChange}
       />
       <input
-        type='text'
-        name='email'
-        placeholder='Filter by email'
+        type="text"
+        name="email"
+        placeholder="Filter by email"
         value={filters.email}
         onChange={handleChange}
       />
       <input
-        type='text'
-        name='phone'
-        placeholder='Filter by phone'
+        type="text"
+        name="phone"
+        placeholder="Filter by phone"
         value={filters.phone}
         onChange={handleChange}
       />
