@@ -1,4 +1,4 @@
-import { User, UserState } from '../../types/types';
+import { User, UserState } from '@/types';
 
 export const filterUsers = (users: User[], filters: UserState): User[] => {
   return users.filter((user) =>

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ChangeEvent, FC } from 'react';
 import { Search } from 'lucide-react';
 import { setFilter } from './filterSlice';
-import { RootState } from '../../redux/store';
+import { RootState } from '@/redux/store';
 
 const Filter: FC = () => {
   const dispatch = useDispatch();

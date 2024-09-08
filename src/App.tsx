@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import UserTable from './components/UserTable';
+import UserTable from './components/Table/UserTable';
 import { DarkModeProvider } from './components/DarkMode/DarkModeProvider';
 import store from './redux/store';
 import { FC } from 'react';
