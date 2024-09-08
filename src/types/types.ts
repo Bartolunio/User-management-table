@@ -1,3 +1,4 @@
+// types/types.ts
 export interface User {
   id: number;
   name: string;
@@ -6,9 +7,14 @@ export interface User {
   phone: string;
 }
 
-export interface FilterState {
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
+export interface UserState {
+  users: User[];
+  filteredUsers: User[];
+  filters: {
+    name: string;
+    username: string;
+    email: string;
+    phone: string;
+  };
+  darkMode: boolean;
 }

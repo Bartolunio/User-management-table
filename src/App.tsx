@@ -1,21 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import UserTable from './components/UserTable';
-import Filter from './components/Filter';
-import { FC, useEffect } from 'react';
-import { fetchUsers } from './redux/userSlice';
+import { DarkModeProvider } from './components/DarkMode/DarkModeProvider';
+import store from './redux/store';
+import { FC } from 'react';
 
 const App: FC = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
-
   return (
-    <div>
-      <Filter />
-      <UserTable />
-    </div>
+    <DarkModeProvider>
+      <Provider store={store}>
+        <UserTable />
+      </Provider>
+    </DarkModeProvider>
   );
 };
 

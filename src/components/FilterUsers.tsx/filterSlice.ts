@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { User, UserState } from '../types/types';
+import { User, UserState } from '../../types/types';
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -30,7 +30,7 @@ const userSlice = createSlice({
       state.filters[key] = value;
       state.filteredUsers = state.users.filter((user) =>
         Object.entries(state.filters).every(([filterKey, filterValue]) => {
-          const filterValueStr = filterValue.toLowerCase();
+          const filterValueStr = filterValue.toString().toLowerCase();
           const userValueStr = (user[filterKey as keyof User] || '')
             .toString()
             .toLowerCase();
