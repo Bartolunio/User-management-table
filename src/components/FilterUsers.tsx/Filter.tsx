@@ -1,7 +1,7 @@
-import { ChangeEvent, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ChangeEvent, FC } from 'react';
 import { Search } from 'lucide-react';
-import { setFilter } from '../../redux/userSlice';
+import { setFilter } from './filterSlice';
 import { RootState } from '../../redux/store';
 
 const Filter: FC = () => {
@@ -28,7 +28,7 @@ const Filter: FC = () => {
             type={type}
             name={key}
             placeholder={placeholder}
-            value={filters[key]}
+            value={filters[key as keyof typeof filters]}
             onChange={handleInputChange(key)}
             className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500'
           />
