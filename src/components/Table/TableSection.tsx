@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
-import EmptyState from '@/components/EmptyState';
 import { RootState } from '@/redux/store';
 import { FC } from 'react';
+import EmptyState from '../EmptyState/EmptyState';
+import { useDarkMode } from '../DarkMode/DarkModeProvider';
 
 const TableSection: FC = () => {
-  const { filteredUsers, darkMode } = useSelector(
-    (state: RootState) => state.users
-  );
+  const { filteredUsers } = useSelector((state: RootState) => state.users);
+  const { darkMode } = useDarkMode();
 
   return (
     <div className='overflow-x-auto'>
@@ -26,9 +26,9 @@ const TableSection: FC = () => {
           }`}
         >
           {filteredUsers.length > 0 ? (
-            filteredUsers.map((user, index) => (
+            filteredUsers.map(({ id, name, username, email, phone }, index) => (
               <tr
-                key={user.id}
+                key={id}
                 className={`transition-all duration-300 ${
                   index % 2 === 0
                     ? darkMode
@@ -39,10 +39,10 @@ const TableSection: FC = () => {
                     : 'bg-white'
                 } ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-[#e0b89a]'}`}
               >
-                <td className='px-6 py-4 text-sm'>{user.name}</td>
-                <td className='px-6 py-4 text-sm'>{user.username}</td>
-                <td className='px-6 py-4 text-sm'>{user.email}</td>
-                <td className='px-6 py-4 text-sm'>{user.phone}</td>
+                <td className='px-6 py-4 text-sm'>{name}</td>
+                <td className='px-6 py-4 text-sm'>{username}</td>
+                <td className='px-6 py-4 text-sm'>{email}</td>
+                <td className='px-6 py-4 text-sm'>{phone}</td>
               </tr>
             ))
           ) : (

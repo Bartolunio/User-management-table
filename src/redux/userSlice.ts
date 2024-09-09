@@ -15,7 +15,6 @@ const initialState: UserState = {
     email: '',
     phone: '',
   },
-  darkMode: false,
 };
 
 const userSlice = createSlice({
@@ -42,9 +41,6 @@ const userSlice = createSlice({
       state.filters = initialState.filters;
       state.filteredUsers = state.users;
     },
-    toggleDarkMode: (state) => {
-      state.darkMode = !state.darkMode;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
@@ -54,5 +50,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setFilter, resetFilters, toggleDarkMode } = userSlice.actions;
+export const { setFilter, resetFilters } = userSlice.actions;
 export default userSlice.reducer;

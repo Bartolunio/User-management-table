@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { User, UserState } from '@/types';
+import { filterUsers } from './filterUsers';
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -15,7 +16,6 @@ const initialState: UserState = {
     email: '',
     phone: '',
   },
-  darkMode: false,
 };
 
 const userSlice = createSlice({
@@ -28,22 +28,12 @@ const userSlice = createSlice({
     ) => {
       const { key, value } = action.payload;
       state.filters[key] = value;
-      state.filteredUsers = state.users.filter((user) =>
-        Object.entries(state.filters).every(([filterKey, filterValue]) => {
-          const filterValueStr = filterValue.toString().toLowerCase();
-          const userValueStr = (user[filterKey as keyof User] || '')
-            .toString()
-            .toLowerCase();
-          return userValueStr.includes(filterValueStr);
-        })
-      );
+      state.filteredUsers = filterUsers(state.users, state.filters);
     },
+
     resetFilters: (state) => {
       state.filters = initialState.filters;
       state.filteredUsers = state.users;
-    },
-    toggleDarkMode: (state) => {
-      state.darkMode = !state.darkMode;
     },
   },
   extraReducers: (builder) => {
@@ -54,5 +44,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setFilter, resetFilters, toggleDarkMode } = userSlice.actions;
+export const { setFilter, resetFilters } = userSlice.actions;
 export default userSlice.reducer;

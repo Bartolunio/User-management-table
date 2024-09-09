@@ -3,17 +3,18 @@ import { ChangeEvent, FC } from 'react';
 import { Search } from 'lucide-react';
 import { setFilter } from './filterSlice';
 import { RootState } from '@/redux/store';
+import { FilterField, FilterType } from '@/types';
 
 const Filter: FC = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state: RootState) => state.users.filters);
 
   const handleInputChange =
-    (key: keyof typeof filters) => (e: ChangeEvent<HTMLInputElement>) => {
+    (key: FilterType) => (e: ChangeEvent<HTMLInputElement>) => {
       dispatch(setFilter({ key, value: e.target.value }));
     };
 
-  const filterFields = [
+  const filterFields: FilterField[] = [
     { key: 'name', placeholder: 'Filter by name', type: 'text' },
     { key: 'username', placeholder: 'Filter by username', type: 'text' },
     { key: 'email', placeholder: 'Filter by email', type: 'email' },

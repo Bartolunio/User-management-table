@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { resetFilters, setFilter } from '../FilterUsers/filterSlice';
 import { ChangeEvent, FC } from 'react';
+import { useDarkMode } from '../DarkMode/DarkModeProvider';
+import { FilterType } from '@/types';
 
 const FilterSection: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const filters = useSelector((state: RootState) => state.users.filters);
-  const darkMode = useSelector((state: RootState) => state.users.darkMode);
+  const { darkMode } = useDarkMode();
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const key = e.target.name as keyof typeof filters;
+    const key = e.target.name as FilterType;
     dispatch(setFilter({ key, value: e.target.value }));
   };
 
